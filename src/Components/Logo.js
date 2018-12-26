@@ -6,7 +6,7 @@ import Svg, {
   G,
   Mask,
   Use,
-  Ellipse,
+  Ellipse
 } from 'react-native-svg'
 
 const SvgComponent = props => (
