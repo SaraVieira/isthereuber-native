@@ -1,15 +1,13 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { Text, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { fixNameB } from '../utils/fixName'
 import { search } from '../utils/algolia'
-import uniqBy from 'lodash.uniqby'
 import Flag from 'react-native-flags'
 import { Wrapper, Subtitle, Cities, List, City } from './Search.elements'
 
 export default class Search extends React.Component {
   static navigationOptions = {
-    title: 'Search',
-    header: null
+    title: 'Search'
   }
 
   state = {
@@ -27,11 +25,34 @@ export default class Search extends React.Component {
         return
       }
 
-      this.setState({
-        cities: content.hits,
-        loaded: true
-      })
+      this.setState(
+        {
+          cities: content.hits
+        },
+        this.checkCitiesLength
+      )
     })
+  }
+
+  checkCitiesLength = () => {
+    const cities = this.state.cities
+    if (cities.length === 1) {
+      this.props.navigation.push('City', {
+        city: cities[0]
+      })
+    }
+
+    this.timer = setTimeout(
+      () =>
+        this.setState({
+          loaded: true
+        }),
+      600
+    )
+  }
+
+  componentWillUnmount() {
+    if (this.timer) clearTimeout(this.timer)
   }
 
   componentDidMount() {
@@ -40,27 +61,49 @@ export default class Search extends React.Component {
   }
 
   render() {
-    // link: `/${fixNameB(city.name)}`
     const { loaded, cities } = this.state
     const city = this.props.navigation.state.params.city
+
     return (
       <Wrapper>
-        <Subtitle>More than one city matches your search</Subtitle>
-        <Subtitle>What city did you mean ?</Subtitle>
-        <Cities>
-          {uniqBy(cities, 'name').map(city => (
-            <List key={city.place_id}>
-              <City> {city.name}</City>
-              <Text>
-                <Flag
-                  type="flat"
-                  code={city.info.country.short_name}
-                  size={32}
-                />
-              </Text>
-            </List>
-          ))}
-        </Cities>
+        {!loaded ? (
+          <ActivityIndicator size="large" color="#e8eaf6" />
+        ) : (
+          <>
+            <Subtitle>More than one city matches your search</Subtitle>
+            <Subtitle>What city did you mean ?</Subtitle>
+            <Cities>
+              {cities.map(city => (
+                <List key={city.info.place_id}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.props.navigation.push('City', {
+                        city
+                      })
+                    }
+                  >
+                    <Text
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}
+                    >
+                      <City style={{ marginRight: 20 }}> {city.name}</City>
+
+                      <Flag
+                        type="flat"
+                        code={city.info.country.short_name}
+                        size={32}
+                      />
+                    </Text>
+                  </TouchableOpacity>
+                </List>
+              ))}
+            </Cities>
+          </>
+        )}
       </Wrapper>
     )
   }

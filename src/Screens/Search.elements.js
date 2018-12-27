@@ -14,10 +14,6 @@ export const Wrapper = styled(View)`
   align-items: center;
   justify-content: center;
   height: 100%;
-
-  p:not(:last-child) {
-    padding-right: 20px;
-  }
   flex-direction: column;
 `
 
