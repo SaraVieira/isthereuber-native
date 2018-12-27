@@ -11,9 +11,9 @@ import styled from 'styled-components/native'
 
 export const Wrapper = styled(View)`
   background: #181743;
-  flex: 1;
   align-items: center;
   justify-content: center;
+  height: 100%;
   text-align: center;
   flex-direction: column;
 `

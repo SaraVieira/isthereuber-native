@@ -1,11 +1,20 @@
 import React from 'react'
-import { Text, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 import Flag from 'react-native-flags'
-import { Wrapper, Subtitle, Cities, List, City } from './Search.elements'
+import {
+  Wrapper,
+  Subtitle,
+  Cities,
+  List,
+  City,
+  CityWrapper
+} from './Search.elements'
 
 export default class Search extends React.Component {
   static navigationOptions = {
-    title: 'Search'
+    title: null,
+    headerTransparent: true,
+    headerTintColor: '#fff'
   }
 
   render() {
@@ -25,22 +34,15 @@ export default class Search extends React.Component {
                   })
                 }
               >
-                <Text
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
-                  <City style={{ marginRight: 20 }}> {city.name}</City>
+                <CityWrapper>
+                  <City style={{ marginRight: 10 }}> {city.name}</City>
 
                   <Flag
                     type="flat"
                     code={city.info.country.short_name}
                     size={32}
                   />
-                </Text>
+                </CityWrapper>
               </TouchableOpacity>
             </List>
           ))}

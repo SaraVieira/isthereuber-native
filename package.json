@@ -11,11 +11,8 @@
   "dependencies": {
     "algoliasearch": "^3.32.0",
     "expo": "^31.0.2",
-    "lodash.uniqby": "^4.7.0",
-    "mobile-detect": "^1.4.3",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
-    "react-native-app-link": "^1.0.0",
     "react-native-confetti": "^0.1.0",
     "react-native-flags": "^1.0.0",
     "react-native-svg": "^8.0.10",

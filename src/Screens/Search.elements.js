@@ -35,3 +35,10 @@ export const City = styled(Text)`
 export const Cities = styled(View)`
   margin-top: 40px;
 `
+
+export const CityWrapper = styled(View)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`

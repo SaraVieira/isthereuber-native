@@ -15,6 +15,12 @@ import edgeCases from '../utils/edgeCases'
 import { getAppStoreLink } from '../utils/appStores'
 
 class City extends React.Component {
+  static navigationOptions = {
+    title: null,
+    headerTransparent: true,
+    headerTintColor: '#fff'
+  }
+
   componentDidMount() {
     if (this._confettiView) {
       this._confettiView.startConfetti()
@@ -22,7 +28,7 @@ class City extends React.Component {
   }
 
   render() {
-    const city = this.props.navigation.state.params.city
+    const city = this.props.navigation.state.params.city || { company: [] }
 
     return (
       <Wrapper>

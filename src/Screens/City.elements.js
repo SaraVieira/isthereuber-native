@@ -39,6 +39,7 @@ export const CityName = styled(Text)`
   font-size: 16px;
   color: white;
   text-align: center;
+  max-width: 80%;
 `
 
 export const Company = styled(Text)`
