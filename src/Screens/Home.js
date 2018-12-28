@@ -6,8 +6,8 @@ import {
   KeyboardAvoidingView
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import logo from '../../assets/logo.png'
-import AlgoliaLogo from '../../assets/algolia.png'
+import logo from 'assets/logo.png'
+import AlgoliaLogo from 'assets/algolia.png'
 import {
   Wrapper,
   Label,
@@ -16,8 +16,8 @@ import {
   Logo,
   Algolia
 } from './Home.elements'
-import { fixNameB } from '../utils/fixName'
-import { search } from '../utils/algolia'
+import { fixNameB } from 'utils/fixName'
+import { search } from 'utils/algolia'
 
 export default class Home extends React.Component {
   state = { text: '', loading: false, cities: [] }
