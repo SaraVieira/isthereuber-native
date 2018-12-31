@@ -1,44 +1,8 @@
-const cases = [
-  {
-    type: 'price',
-    message: 'The price for getting an Uber is the same as getting a taxi',
-    city: ['berlin']
-  },
-  {
-    type: 'price',
-    message:
-      'A ride from Charles de Gaule Airport to Paris is legally set at 50-55€, and 30-35€ from Orly Airport. Beware of frauds.',
-    city: ['paris']
-  },
-  {
-    type: 'safety',
-    message: 'Be aware! Some taxi drivers may attack your uber driver.',
-    city: ['porto', 'istanbul']
-  },
-  {
-    type: 'price',
-    message:
-      "Uber drivers only take payment by cash. If they think you'll pay by card then they'll cancel the ride",
-    city: ['san salvador', 'buenos aires']
-  },
-  {
-    type: 'service',
-    message: 'Only Uber Black is available in Seoul.',
-    city: ['seoul']
-  },
-  {
-    type: 'service',
-    message: 'It is preferred to take Yandex Taxi',
-    country: ['russia']
-  },
-  {
-    type: 'service',
-    message: 'There are really few cars',
-    city: ['helsinki']
-  }
-]
-
-export default ({ name, info: { country = { long_name: '' } } }) => {
+export default async ({ name, info: { country = { long_name: '' } } }) => {
+  const data = await fetch(
+    'https://isthereuber.in/.netlify/functions/edge-cases'
+  )
+  const cases = await data.json()
   const match = cases.find(
     c =>
       (c.city && c.city.includes(name.toLowerCase())) ||
