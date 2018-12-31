@@ -26,10 +26,6 @@ class City extends React.Component {
   }
 
   componentDidMount() {
-    // if (this._confettiView) {
-    //   this._confettiView.startConfetti()
-    // }
-
     edgeCases(this.props.navigation.state.params.city).then(message =>
       this.setState({ message })
     )
