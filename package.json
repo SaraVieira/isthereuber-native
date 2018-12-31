@@ -15,7 +15,8 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
     "react-native-confetti": "^0.1.0",
     "react-native-flags": "^1.0.0",
-    "react-native-svg": "^8.0.10",
+    "react-native-keyboard-aware-scroll-view": "^0.8.0",
+    "react-native-pose": "^0.9.0",
     "react-navigation": "^3.0.9",
     "remove-accents": "^0.4.2",
     "styled-components": "^4.1.3"

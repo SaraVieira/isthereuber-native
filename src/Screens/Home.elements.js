@@ -44,12 +44,6 @@ export const InputWrapper = styled(View)`
   flex-direction: row;
   align-items: center;
 `
-
-export const Logo = styled(Image)`
-  width: 200px;
-  height: 200px;
-`
-
 export const Algolia = styled(TouchableOpacity)`
   margin-top: 60px;
 `

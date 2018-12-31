@@ -6,16 +6,9 @@ import {
   KeyboardAvoidingView
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import logo from '../../assets/logo.png'
+import Logo from '../Components/Logo'
 import AlgoliaLogo from '../../assets/algolia.png'
-import {
-  Wrapper,
-  Label,
-  Input,
-  InputWrapper,
-  Logo,
-  Algolia
-} from './Home.elements'
+import { Wrapper, Label, Input, InputWrapper, Algolia } from './Home.elements'
 import { fixNameB } from '../utils/fixName'
 import { search } from '../utils/algolia'
 
@@ -28,7 +21,8 @@ export default class Home extends React.Component {
 
   search = () => {
     this.setState({
-      loading: true
+      loading: true,
+      isSearching: false
     })
 
     search(this.state.text, (err, content) => {
@@ -64,14 +58,14 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const { loading } = this.state
+    const { loading, isSearching } = this.state
     return (
       <KeyboardAvoidingView
         behavior="height"
         style={{ display: 'flex', flex: 1, height: '100%' }}
       >
         <Wrapper>
-          <Logo source={logo} />
+          <Logo isSearching={isSearching} />
           <Label>Is there Uber in</Label>
           {loading ? (
             <ActivityIndicator
@@ -83,7 +77,9 @@ export default class Home extends React.Component {
             <InputWrapper>
               <Input
                 onSubmitEditing={this.search}
-                onChangeText={text => this.setState({ text })}
+                onChangeText={text =>
+                  this.setState({ text, isSearching: true })
+                }
               />
               <Label style={{ marginLeft: 10 }}>?</Label>
             </InputWrapper>
