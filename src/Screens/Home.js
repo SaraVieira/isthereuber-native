@@ -21,8 +21,7 @@ export default class Home extends React.Component {
 
   search = () => {
     this.setState({
-      loading: true,
-      isSearching: false
+      loading: true
     })
 
     search(this.state.text, (err, content) => {
@@ -58,14 +57,14 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const { loading, isSearching } = this.state
+    const { loading, text } = this.state
     return (
       <KeyboardAvoidingView
         behavior="height"
         style={{ display: 'flex', flex: 1, height: '100%' }}
       >
         <Wrapper>
-          <Logo isSearching={isSearching} />
+          <Logo isSearching={text ? true : false} />
           <Label>Is there Uber in</Label>
           {loading ? (
             <ActivityIndicator
@@ -77,9 +76,7 @@ export default class Home extends React.Component {
             <InputWrapper>
               <Input
                 onSubmitEditing={this.search}
-                onChangeText={text =>
-                  this.setState({ text, isSearching: true })
-                }
+                onChangeText={text => this.setState({ text })}
               />
               <Label style={{ marginLeft: 10 }}>?</Label>
             </InputWrapper>
