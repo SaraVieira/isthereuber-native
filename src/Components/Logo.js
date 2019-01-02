@@ -80,10 +80,6 @@ class Logo extends React.Component {
     setInterval(() => {
       this.blink('mouthIsOpen', 250)
     }, 5000)
-
-    setTimeout(() => {
-      this.setState({ isSearching: true })
-    }, 3000)
   }
 
   blink = (state, time) => {
